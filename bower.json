@@ -1,0 +1,26 @@
+{
+  "name": "app2",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Carlos David Aguilar Ruiz <carlos.aguilar@accedo.tv>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~2.3.1",
+    "angular-ui-router": "~0.3.2",
+    "angular": "~1.6.0",
+    "angular-animate": "~1.6.0",
+    "angular-touch": "~1.6.0"
+  }
+}

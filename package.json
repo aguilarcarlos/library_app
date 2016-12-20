@@ -1,0 +1,27 @@
+{
+  "name": "app2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "npm run jsmin && npm run sass && node server.js",
+    "jsmin": "node ./bin/compileJS",
+    "sass": "sass sass/main.scss:public/css/style.css",
+    "sass-watch": "sass --watch sass/main.scss:public/css/style.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "method-override": "^2.3.7",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "jspm": "^0.16.48",
+    "live-server": "^1.1.0",
+    "uglify-js": "^2.7.5"
+  }
+}
