@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "npm run jsmin && npm run sass && node server.js",
-    "jsmin": "node ./bin/compileJS",
+    "jsmin": "node ./bin/compileScripts.js",
     "sass": "sass sass/main.scss:public/css/style.css",
     "sass-watch": "sass --watch sass/main.scss:public/css/style.css"
   },

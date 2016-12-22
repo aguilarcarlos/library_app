@@ -1,40 +1,28 @@
 <div class="page-header">
-    <h1>Books</h1>
+    <h1>Book List</h1>
 </div>
 
-<h2>Buttons</h2>
 
-<div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-primary" ng-model="bigData.breakfast" uib-btn-checkbox>
-        Breakfast
-    </label>
-    <label class="btn btn-primary" ng-model="bigData.lunch" uib-btn-checkbox>
-        Lunch
-    </label>
-    <label class="btn btn-primary" ng-model="bigData.dinner" uib-btn-checkbox>
-        Dinner
-    </label>
-</div>
-
-<pre><code>{{ bigData | json }}</code></pre>
-
-<h2>Collapse</h2>
-<a href="#" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">
-    Toggle Panel
-</a>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a href="#" ng-click="isCollapsed = !isCollapsed">
-                Collapsible Group Item #1
-            </a>
-        </h4>
-    </div>
-    <div uib-collapse="isCollapsed">
-        <div class="panel-body">Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+<div class="row">
+    <div class="col-md-4">
+        <div class="input-group">
+            Filter books: <input type="search" class="form-control" ng-model="search" placeholder="Filter books">
         </div>
     </div>
 </div>
+<br><br>
+<div ng-if="loaded">
+    <div ng-if="!empty">
+        <grid-book items="books" search="search" mode="complete"></grid-book>
+    </div>
+    <div ng-if="empty">
+        <div>No books available</div>
+    </div>
+</div>
 
-<pre><code>{{ isCollapsed }}</code></pre>
+<div ng-if="!loaded">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>

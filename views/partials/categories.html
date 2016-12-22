@@ -2,38 +2,26 @@
     <h1>Categories</h1>
 </div>
 
-<h2>Buttons</h2>
-<div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-primary" ng-model="bigData.breakfast" uib-btn-checkbox>
-        Breakfast
-    </label>
-    <label class="btn btn-primary" ng-model="bigData.lunch" uib-btn-checkbox>
-        Lunch
-    </label>
-    <label class="btn btn-primary" ng-model="bigData.dinner" uib-btn-checkbox>
-        Dinner
-    </label>
-</div>
+<div ng-repeat="category in categories" ng-if="loaded">
+    <h4>{{ category.name }}</h4>
 
-<pre><code>{{ bigData | json }}</code></pre>
-
-<h2>Collapse</h2>
-<a href="#" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">
-    Toggle Panel
-</a>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a href="#" ng-click="isCollapsed = !isCollapsed">
-                Collapsible Group Item #1
-            </a>
-        </h4>
-    </div>
-    <div uib-collapse="isCollapsed">
-        <div class="panel-body">Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    <div class="row">
+        <div class="col-md-2 fadeIn animated" ng-repeat="book in category.books">
+            <div class="thumbnail">
+                <a ui-sref="books.detail({ book_id: book._id })">
+                    <img ng-src="{{book.poster}}" alt="{{book.name}}" style="width:100%">
+                    <div class="caption">
+                        <p>{{book.name}}</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
-<pre><code>{{ isCollapsed }}</code></pre>
+<div ng-if="!loaded">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>

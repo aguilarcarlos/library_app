@@ -1,0 +1,28 @@
+<div class="page-header" ng-if="loaded">
+    <h1>Book Details</h1>
+</div>
+
+<div class="row" ng-if="loaded" >
+    <div class="col-md-3 bounceIn animated">
+        <div class="thumbnail">
+            <img ng-src="{{ bookDetails.poster }}" alt="{{ bookDetails.name }}" style="width:100%">
+        </div>
+    </div>
+    <div class="col-md-9 fadeIn animated">
+        <h3>{{ bookDetails.name }} <small>{{ bookDetails.author }}</small></h3>
+        <hr>
+        <p>
+            <strong>Author:</strong><br />{{ bookDetails.author }}<br />
+            <strong>Category:</strong><br /><span class="label label-primary">{{ bookDetails.category_id }}</span><br />
+            <strong>User:</strong><br />{{ bookDetails.user }}<br />
+            <strong>Published:</strong><br />{{ bookDetails.published_date }}
+        </p>
+    </div>
+</div>
+
+<div ng-if="!loaded">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>

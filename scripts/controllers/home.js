@@ -1,17 +1,31 @@
-// <BEGIN FILE DESCRIPTION>
-//  {
-//    "description" : "Controller handling the login functionality."
-//  }
-// <END FILE DESCRIPTION>
-
 'use strict';
 
 var homeController = function ($scope, BookService) {
-    $scope.bigData = {};
-    $scope.bigData.breakfast = false;
-    $scope.bigData.lunch = false;
-    $scope.bigData.dinner = false;
-    $scope.isCollapsed = false;
+    $scope.myInterval = 5000;
+    $scope.noWrapSlides = false;
+    $scope.active = 0;
+
+  var slides = $scope.slides = [];
+  var currIndex = 0;
+
+    var newWidth = 600 + slides.length + 1;
+
+    $scope.slides.push(
+    {
+        image: 'http://lorempixel.com/g/1200/400/city/1',
+        text: 'The book demo n1',
+        id: currIndex++
+    },
+    {
+        image: 'http://lorempixel.com/g/1200/400/city/2',
+        text: 'The book demo n2',
+        id: currIndex++
+    },
+    {
+        image: 'http://lorempixel.com/g/1200/400/city/3',
+        text: 'The book demo n3',
+        id: currIndex++
+    });
 };
 
 angular.module('app')

@@ -1,6 +1,6 @@
 'use strict';
 
-var _UtilService = function ($http, $q, AppConfig) {
+var _UtilService = function ($http, $q) {
 
     function ensureUrl (segments, secure) {
         secure = !!secure;
@@ -16,10 +16,25 @@ var _UtilService = function ($http, $q, AppConfig) {
         return url;
     }
 
+    function createRows (items, limitPerRow) {
+        limitPerRow = limitPerRow || 6;
+
+        var segments = _.chunk(items, limitPerRow),
+            segmentsLen = segments.length,
+            rows = [];
+
+        for (var i = 0; i < segmentsLen; i++) {
+            rows.push({items: segments[i]});
+        }
+
+        return rows;
+    }
+
     return {
-        ensureUrl: ensureUrl
+        ensureUrl: ensureUrl,
+        createRows: createRows
     }
 };
 
 angular.module('app.services.UtilService', [])
-    .factory('UtilService', ['$http', '$q', 'AppConfig', _UtilService]);
+    .factory('UtilService', ['$http', '$q', _UtilService]);

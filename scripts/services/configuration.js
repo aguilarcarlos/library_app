@@ -1,9 +1,9 @@
 'use strict';
 
-var _ConfigurationService = function ($http, $q, AppConfig) {
+var _ConfigurationService = function ($http, $q, AppConfig, UtilService) {
     return {
         getConfig: function () {
-            return $http.get(AppConfig.base_url, {cache: true})
+            return $http.get(UtilService.ensureUrl(AppConfig.base_url), {cache: true})
                 .then(function (response) {
                     if (!response.data.data || !response.data.data.length) {
                         return response.data;
@@ -18,4 +18,4 @@ var _ConfigurationService = function ($http, $q, AppConfig) {
 };
 
 angular.module('app.services.ConfigurationService', [])
-    .factory('ConfigurationService', ['$http', '$q', 'AppConfig', _ConfigurationService]);
+    .factory('ConfigurationService', ['$http', '$q', 'AppConfig', 'UtilService', _ConfigurationService]);

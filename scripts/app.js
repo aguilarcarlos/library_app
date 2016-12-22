@@ -6,16 +6,19 @@ angular.module('app', [
     'ngTouch',
     'ui.bootstrap',
 
-    'app.components',
+    'app.components.navbar',
+    'app.components.books.grid',
 
     'app.services.BookService',
+    'app.services.CategoryService',
     'app.services.ConfigurationService',
     'app.services.UtilService',
 
-    'app.routes.home',
-    'app.routes.books',
-    'app.routes.categories'
+    'app.router'
 ])
+
+.constant('_', window._)
+.constant('moment', window.moment)
 
 .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.html5Mode(true);

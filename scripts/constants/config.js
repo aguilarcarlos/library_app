@@ -6,10 +6,13 @@ var _AppConfig = function () {
         api_url: 'http://api.demo.aguilarcarlos.com/content',
         base_url: 'http://api.demo.aguilarcarlos.com',
         paths: {
+            book_and_category: 'category/book',
             book: 'books/{book_id}',
+            books_category: '/books/category/{category_id}',
             books: 'books',
-            categories: 'categories',
-            category: 'categories/{category_id}'
+            category: 'categories/{category_id}',
+            category_books: 'categories/{category_id}/books',
+            categories: 'categories'
         }
     };
 

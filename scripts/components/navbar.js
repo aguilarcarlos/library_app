@@ -14,5 +14,5 @@ var _nabvarDirective = function ($rootScope) {
     };
 };
 
-angular.module('app.components', [])
+angular.module('app.components.navbar', [])
     .directive('navBar', ['$rootScope', _nabvarDirective]);
