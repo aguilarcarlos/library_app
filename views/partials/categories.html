@@ -5,7 +5,7 @@
 <div ng-repeat="category in categories" ng-if="loaded">
     <h4>{{ category.name }}</h4>
 
-    <div class="row">
+    <div class="row" ng-if="category.books.length">
         <div class="col-md-2 fadeIn animated" ng-repeat="book in category.books">
             <div class="thumbnail">
                 <a ui-sref="books.detail({ book_id: book._id })">
@@ -15,6 +15,12 @@
                     </div>
                 </a>
             </div>
+        </div>
+    </div>
+
+    <div class="row" ng-if="!category.books.length">
+        <div class="col-md-12">
+            No books available for this category.
         </div>
     </div>
 </div>
