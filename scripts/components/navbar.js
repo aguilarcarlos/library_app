@@ -1,6 +1,6 @@
 'use strict'
 
-var _nabvarDirective = function ($rootScope) {
+var _navbarDirective = function ($rootScope) {
 
     function linker ($scope, element, attrs) {
         console.log('Todo Something');
@@ -15,4 +15,4 @@ var _nabvarDirective = function ($rootScope) {
 };
 
 angular.module('app.components.navbar', [])
-    .directive('navBar', ['$rootScope', _nabvarDirective]);
+    .directive('navBar', ['$rootScope', _navbarDirective]);

@@ -14,7 +14,7 @@ var _ConfigurationService = function ($http, $q, AppConfig, UtilService) {
                     return failure.data;
                 });
         }
-    }
+    };
 };
 
 angular.module('app.services.ConfigurationService', [])

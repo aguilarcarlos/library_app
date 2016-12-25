@@ -69,7 +69,7 @@ var _CategoryService = function ($http, $q, AppConfig, UtilService, _) {
 
             return defer.promise;
         }
-    }
+    };
 };
 
 angular.module('app.services.CategoryService', [])

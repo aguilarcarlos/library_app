@@ -1,13 +1,12 @@
 'use strict';
 
-var homeController = function ($scope, BookService) {
+var homeController = function ($scope) {
     $scope.myInterval = 5000;
     $scope.noWrapSlides = false;
     $scope.active = 0;
 
-  var slides = $scope.slides = [];
-  var currIndex = 0;
-
+    var slides = $scope.slides = [];
+    var currIndex = 0;
     var newWidth = 600 + slides.length + 1;
 
     $scope.slides.push(
@@ -29,4 +28,6 @@ var homeController = function ($scope, BookService) {
 };
 
 angular.module('app')
-    .controller('HomeController', ['$scope', 'BookService', homeController]);
+    .controller('HomeController', [
+        '$scope',
+        homeController]);

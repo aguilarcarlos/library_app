@@ -41,6 +41,9 @@ var _BookService = function ($http, $q, AppConfig, UtilService, _) {
                 }
 
                 defer.reject(err);
+            })
+            .catch(function (error) {
+                defer.reject(error);
             });
 
         return defer.promise;
@@ -67,6 +70,36 @@ var _BookService = function ($http, $q, AppConfig, UtilService, _) {
                 }
 
                 defer.reject(err);
+            })
+            .catch(function (error) {
+                defer.reject(error);
+            });
+
+        return defer.promise;
+    }
+
+    function createBook (data, opts) {
+        var defer = $q.defer(),
+            options = _.merge({}, !_.isObject(opts) ? {} : opts);
+
+        $http.post(Resources.books, data, options)
+            .then(function (response) {
+                response = response.data || {};
+
+                if (response.error) {
+                    return defer.reject(response.data.join(' ') || response.message);
+                }
+
+                defer.resolve(response.message);
+            }, function (err) {
+                if (err.data && err.data.error) {
+                    return defer.reject(err.data.message);
+                }
+
+                defer.reject(err);
+            })
+            .catch(function (error) {
+                defer.reject(error);
             });
 
         return defer.promise;
@@ -99,6 +132,9 @@ var _BookService = function ($http, $q, AppConfig, UtilService, _) {
                 }
 
                 defer.reject(err);
+            })
+            .catch(function (error) {
+                defer.reject(error);
             });
 
         return defer.promise;
@@ -107,7 +143,8 @@ var _BookService = function ($http, $q, AppConfig, UtilService, _) {
     return {
         getBooks: getBooks,
         getBook: getBook,
-        deleteBook: deleteBook
+        deleteBook: deleteBook,
+        createBook: createBook
     };
 };
 

@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="col-md-9 fadeIn animated">
-        <h3>{{ bookDetails.name }} <small>{{ bookDetails.author }}</small></h3>
+        <h3><span ng-bind-html="bookDetails.name | html"></span> <small ng-bind-html="bookDetails.author | html"></small></h3>
         <hr>
         <p>
             <strong>Author:</strong><br />{{ bookDetails.author }}<br />
@@ -20,20 +20,12 @@
 
         <div class="btn-group" role="group" aria-label="...">
             <button type="button" class="btn btn-default" ng-click="editBook(bookDetails._id)">Edit Book</button>
+            <button type="button" class="btn btn-default" ng-click="editBook(bookDetails._id)">Borrow this Book</button>
             <button type="button" class="btn btn-danger" ng-click="removeBook(bookDetails._id)">Remove Book</button>
         </div>
-    </div>
-</div>
-
-<div ng-if="!loaded">
-    <div class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
     </div>
 </div>
 
 <div ng-if="alerts.length">
     <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
 </div>
-
-

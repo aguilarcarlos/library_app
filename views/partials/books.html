@@ -8,6 +8,9 @@
             Filter books: <input type="search" class="form-control" ng-model="search" placeholder="Filter books">
         </div>
     </div>
+    <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="books.create" role="button">New Book</a>
+    </div>
 </div>
 <br><br>
 <div ng-if="loaded">
@@ -16,12 +19,5 @@
     </div>
     <div ng-if="empty">
         <div>No books available</div>
-    </div>
-</div>
-
-<div ng-if="!loaded">
-    <div class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
     </div>
 </div>

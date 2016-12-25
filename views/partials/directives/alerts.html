@@ -1,0 +1,5 @@
+<div>
+    <div class="row" ng-if="collection.length">
+        <div uib-alert ng-repeat="alert in collection" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{ alert.message }}</div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 'use strict';
-
+// URL TYPES: edit, show, list
 angular.module('app.router', ['ui.router'])
     .config([
         '$stateProvider',
@@ -45,9 +45,21 @@ angular.module('app.router', ['ui.router'])
             controller: 'BookController'
         });
 
+        $stateProvider.state('books.create', {
+            url: '/create',
+            templateUrl: 'partials/booksCreate',
+            controller: 'BookController'
+        });
+
         $stateProvider.state('books.detail', {
             url: '/:book_id',
             templateUrl: 'partials/booksDetail',
+            controller: 'BookController'
+        });
+
+        $stateProvider.state('books.edit', {
+            url: '/:book_id/edit',
+            templateUrl: 'partials/booksDetailEdit',
             controller: 'BookController'
         });
 

@@ -1,0 +1,103 @@
+<div class="page-header">
+    <h1>Create new book</h1>
+</div>
+
+<div ng-if="alerts.length">
+    <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.message}}</div>
+</div>
+
+<div class="row" ng-if="loaded">
+    <div class="col-md-2 bounceIn animated">
+        <div class="thumbnail">
+            <img ng-src="{{ book.poster }}" fallback-src style="width:100%">
+        </div>
+        <div>
+            <strong>Name:</strong><br>{{ book.name }}<br>
+            <strong>Author:</strong><br>{{ book.author }}<br>
+            <strong>Category:</strong><br>{{ book.category }}<br>
+            <strong>Published:</strong><br>{{ book.published_date | date:YY-m-dd }}<br>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <form class="form-horizontal" name="bookForm" ng-submit="createBook(book)">
+            <div class="form-group" ng-class="{'has-error': bookForm.bookName.$invalid && bookForm.bookName.$touched, 'has-success': bookForm.bookName.$valid}">
+                <label class="col-sm-2 control-label">Name Book</label>
+                <div class="col-sm-5">
+                    <input type="text" name="bookName" ng-model="book.name" class="form-control" placeholder="Hope's Peak" required ng-required="true" ng-minlength="3">
+                </div>
+                <div class="col-sm-3">
+                    <div class="fadeIn animated" ng-if="bookForm.bookName.$invalid && bookForm.bookName.$touched">
+                        <span class="label label-danger">The name is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': bookForm.bookAuthor.$invalid && bookForm.bookAuthor.$touched, 'has-success': bookForm.bookAuthor.$valid}">
+                <label class="col-sm-2 control-label">Author</label>
+                <div class="col-sm-5">
+                    <input type="text" name="bookAuthor" ng-model="book.author" class="form-control" placeholder="Tony Healey" required ng-required="true" ng-minlength="3">
+                </div>
+                <div class="col-sm-3">
+                    <div class="fadeIn animated" ng-if="bookForm.bookAuthor.$invalid && bookForm.bookAuthor.$touched">
+                        <span class="label label-danger">The author is required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Poster URL</label>
+                <div class="col-sm-5">
+                    <input type="text" name="bookPoster" ng-model="book.poster" class="form-control" placeholder="https://images-na.ssl-images-amazon.com/images/I/51ZkOhyEoKL.jpg">
+                </div>
+                <div class="col-sm-3">
+                    <div class="fadeIn animated" ng-if="bookForm.bookPoster.$touched && bookForm.bookPoster.$pristine">
+                        <span class="label label-primary">This is an optional value</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': bookForm.bookDate.$invalid && !bookForm.bookDate.$pristine, 'has-success': bookForm.bookDate.$valid}">
+                <label class="col-sm-2 control-label">Published date</label>
+
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <input type="text" name="bookDate" class="form-control" uib-datepicker-popup ng-model="book.published_date" is-open="picker.opened" datepicker-options="dateOptions" ng-required="true" required close-text="Close" placeholder="1992-05-30" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="fadeIn animated" ng-if="bookForm.bookDate.$invalid && !bookForm.bookDate.$pristine">
+                        <span class="label label-danger">Invalid date</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': bookForm.bookCategory.$invalid && bookForm.bookCategory.$touched, 'has-success': bookForm.bookCategory.$valid}">
+                <label class="col-sm-2 control-label">Category</label>
+
+                <div class="col-sm-5">
+                    <select class="form-control" name="bookCategory" ng-model="book.category" ng-required="true" required>
+                        <option value="">---Please select---</option>
+                        <option ng-repeat="option in categories" value="{{ option.short}} ">{{ option.name }}</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="fadeIn animated" ng-if="bookForm.bookCategory.$invalid && bookForm.bookCategory.$touched">
+                        <span class="label label-danger">Select a category</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" ng-disabled="bookForm.$invalid">Create</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="bookForm.$invalid">Create and Go to Books</button>
+                    <button type="button" class="btn btn-default">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -2,16 +2,19 @@
     <h1>Categories</h1>
 </div>
 
-<div ng-repeat="category in categories" ng-if="loaded">
+<div ng-repeat="category in categories" ng-if="!loading">
     <h4>{{ category.name }}</h4>
 
     <div class="row" ng-if="category.books.length">
         <div class="col-md-2 fadeIn animated" ng-repeat="book in category.books">
-            <div class="thumbnail">
+            <div class="thumbnail card-link">
                 <a ui-sref="books.detail({ book_id: book._id })">
                     <img ng-src="{{book.poster}}" alt="{{book.name}}" style="width:100%">
                     <div class="caption">
-                        <p>{{book.name}}</p>
+                        <p>
+                            <strong ng-bind-html="book.name | html"></strong><br>
+                            <span ng-bind-html="book.author | html"></span>
+                        </p>
                     </div>
                 </a>
             </div>
@@ -22,12 +25,5 @@
         <div class="col-md-12">
             No books available for this category.
         </div>
-    </div>
-</div>
-
-<div ng-if="!loaded">
-    <div class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
     </div>
 </div>

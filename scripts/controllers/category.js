@@ -1,14 +1,16 @@
 'use strict';
 
-var CategoryController = function ($scope, CategoryService, $log, $state, UtilService) {
+var CategoryController = function ($scope, CategoryService, $log, $state, UtilService, SpinnerService) {
     $scope.categories = [];
-    $scope.loaded = false;
     $scope.empty = false;
+    $scope.loading = SpinnerService.isVisible();
 
     function getCategoriesWithBooks () {
+        SpinnerService.show();
+
         CategoryService.getCategoriesWithBooks()
             .then(function (categories) {
-                $scope.loaded = true;
+                SpinnerService.hide();
 
                 if (!categories.length) {
                     $scope.empty = false;
@@ -35,4 +37,5 @@ angular.module('app')
         '$log',
         '$state',
         'UtilService',
+        'SpinnerService',
         CategoryController]);

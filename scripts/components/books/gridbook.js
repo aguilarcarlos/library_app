@@ -100,10 +100,10 @@ angular.module('app.components.books.grid', [])
                 <div>\
                     <img ng-src="{{ data.poster }}" alt="{{ data.name }}" style="width:100%">\
                     <div class="caption">\
-                        <h5>{{ data.name }}</h5>\
+                        <h5 ng-bind-html="data.name | html"></h5>\
                         <p>\
                             <strong>Author:</strong><br />{{ data.author }}<br />\
-                            <strong>Category:</strong><br /><span class="label label-primary">{{ data.category_id }}</span><br />\
+                            <strong>Category:</strong><br /><span class="label label-primary">{{ data.category }}</span><br />\
                             <strong>Date Published:</strong><br />{{ data.published_date }}<br />\
                             <span ng-if="available"><strong>Status:</strong><br /><span class="label label-success">Available</span></span>\
                             <span ng-if="!available">\
