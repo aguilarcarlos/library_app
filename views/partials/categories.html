@@ -11,10 +11,10 @@
                 <a ui-sref="books.detail({ book_id: book._id })">
                     <img ng-src="{{book.poster}}" alt="{{book.name}}" style="width:100%">
                     <div class="caption">
-                        <p>
-                            <strong ng-bind-html="book.name | html"></strong><br>
-                            <span ng-bind-html="book.author | html"></span>
-                        </p>
+                        <h5>
+                            <span ng-bind-html="book.name | html"></span><br>
+                            <small ng-bind-html="book.author | html"></small>
+                        </h5>
                     </div>
                 </a>
             </div>
