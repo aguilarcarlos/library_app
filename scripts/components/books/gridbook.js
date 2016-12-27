@@ -22,11 +22,6 @@ var _gridBook = function (_, UtilService, $rootScope) {
 };
 
 var _gridBookItem = function () {
-
-    function linker ($scope, element, attrs) {
-        console.log('GridBook directive');
-    }
-
     return {
         restrict: 'E',
         replace: true,
@@ -36,19 +31,19 @@ var _gridBookItem = function () {
         },
         templateUrl: function () {
             return 'app-templates/gridbookItem';
-        },
-        link: linker
+        }
     };
 };
 
-var _gridBookData = function (moment, $rootScope) {
+var _gridBookData = function (moment, $rootScope, he) {
     function linker ($scope, elem, attr) {
         // Fomat date before render
         $scope.data.published_date = moment($scope.data.published_date).format('LL');
-        $scope.available = true;
-        if ($scope.data.user) {
-            $scope.available = false;
-        }
+        $scope.data.available = !!!$scope.data.user;
+
+        $scope.data.name = he.decode($scope.data.name);
+        $scope.data.author = he.decode($scope.data.author);
+        $scope.data.user = he.decode($scope.data.user);
     }
 
     return {
@@ -100,13 +95,12 @@ angular.module('app.components.books.grid', [])
                 <div>\
                     <img ng-src="{{ data.poster }}" alt="{{ data.name }}" style="width:100%">\
                     <div class="caption">\
-                        <h5 ng-bind-html="data.name | html"></h5>\
+                        <h5>{{ data.name }}<br><small>{{ data.author }}</small></h5>\
                         <p>\
-                            <strong>Author:</strong><br />{{ data.author }}<br />\
                             <strong>Category:</strong><br /><span class="label label-primary">{{ data.category }}</span><br />\
                             <strong>Date Published:</strong><br />{{ data.published_date }}<br />\
-                            <span ng-if="available"><strong>Status:</strong><br /><span class="label label-success">Available</span></span>\
-                            <span ng-if="!available">\
+                            <span ng-if="data.available"><strong>Status:</strong><br /><span class="label label-success">Available</span></span>\
+                            <span ng-if="!data.available">\
                                 <strong>Status:</strong><br /><span class="label label-default">No available</span><br>\
                                 <strong>User:</strong><br />{{ data.user }}\
                             </span>\
@@ -129,6 +123,6 @@ angular.module('app.components.books.grid', [])
     }])
     .directive('gridBook', ['_', 'UtilService', '$rootScope', _gridBook])
     .directive('gridBookItem', [_gridBookItem])
-    .directive('gridBookData', ['moment', '$rootScope', _gridBookData]);
+    .directive('gridBookData', ['moment', '$rootScope', 'he', _gridBookData]);
 
 

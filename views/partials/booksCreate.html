@@ -8,14 +8,15 @@
 
 <div class="row" ng-if="loaded">
     <div class="col-md-2 bounceIn animated">
-        <div class="thumbnail">
+        <div class="thumbnail card-link">
             <img ng-src="{{ book.poster }}" fallback-src style="width:100%">
-        </div>
-        <div>
-            <strong>Name:</strong><br>{{ book.name }}<br>
-            <strong>Author:</strong><br>{{ book.author }}<br>
-            <strong>Category:</strong><br>{{ book.category }}<br>
-            <strong>Published:</strong><br>{{ book.published_date | date:YY-m-dd }}<br>
+            <div class="caption">
+                <h5>{{ book.name }}<br><small>{{ book.author }}</small></h5>
+                <p>
+                    <strong>Category:</strong><br>{{ book.category }}<br>
+                    <strong>Published:</strong><br>{{ book.published_date | date:'MMMM d, y' }}
+                </p>
+            </div>
         </div>
     </div>
     <div class="col-md-10">
@@ -80,7 +81,7 @@
                 <div class="col-sm-5">
                     <select class="form-control" name="bookCategory" ng-model="book.category" ng-required="true" required>
                         <option value="">---Please select---</option>
-                        <option ng-repeat="option in categories" value="{{ option.short}} ">{{ option.name }}</option>
+                        <option ng-repeat="option in categories" value="{{ option.short}}">{{ option.name }}</option>
                     </select>
                 </div>
 
@@ -94,8 +95,8 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary" ng-disabled="bookForm.$invalid">Create</button>
-                    <button type="submit" class="btn btn-primary" ng-disabled="bookForm.$invalid">Create and Go to Books</button>
-                    <button type="button" class="btn btn-default">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="createBook(book, true)" ng-disabled="bookForm.$invalid">Create and Go to Books</button>
+                    <a href="/books" class="btn btn-default">Cancel</a>
                 </div>
             </div>
         </form>

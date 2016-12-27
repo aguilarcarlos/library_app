@@ -1,0 +1,24 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">{{ book.name }}</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group">
+            <div class="btn-group" ng-init="book.setAvailable = book.available ? 1 : 0">
+                <label class="btn btn-success" ng-model="book.setAvailable" uib-btn-radio="1">Available</label>
+                <label class="btn btn-default" ng-model="book.setAvailable" uib-btn-radio="0">Lend this Book</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="user"><strong>Enter the name of the user</strong></label>
+            <input type="text" ng-disabled="book.setAvailable === 1" class="form-control" id="user" placeholder="Thomas Glen" ng-model="book.user" required>
+        </div>
+        <div ng-if="alerts.length">
+            <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.message}}</div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="update()">OK</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

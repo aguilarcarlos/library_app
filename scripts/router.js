@@ -52,13 +52,13 @@ angular.module('app.router', ['ui.router'])
         });
 
         $stateProvider.state('books.detail', {
-            url: '/:book_id',
+            url: '/:book_id?status',
             templateUrl: 'partials/booksDetail',
             controller: 'BookController'
         });
 
         $stateProvider.state('books.edit', {
-            url: '/:book_id/edit',
+            url: '/:book_id/edit?status',
             templateUrl: 'partials/booksDetailEdit',
             controller: 'BookController'
         });

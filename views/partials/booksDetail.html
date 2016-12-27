@@ -1,5 +1,9 @@
 <div class="page-header">
-    <h1>Book Details</h1>
+    <h1>Details of<span ng-if="!bookDetails.name">...</span> {{ bookDetails.name }}</h1>
+</div>
+
+<div ng-if="alerts.length">
+    <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.message}}</div>
 </div>
 
 <div class="row" ng-if="loaded" >
@@ -14,18 +18,23 @@
         <p>
             <strong>Author:</strong><br />{{ bookDetails.author }}<br />
             <strong>Category:</strong><br /><span class="label label-primary">{{ bookDetails.category_id }}</span><br />
-            <strong>User:</strong><br />{{ bookDetails.user }}<br />
+            <span ng-if="!bookDetails.available"><strong>User:</strong><br />{{ bookDetails.user }}<br /></span>
             <strong>Published:</strong><br />{{ bookDetails.published_date }}
+            <div class="label label-success" ng-if="bookDetails.available">Available</div>
+            <div class="label label-default" ng-if="!bookDetails.available">Not available</div>
         </p>
-
         <div class="btn-group" role="group" aria-label="...">
             <button type="button" class="btn btn-default" ng-click="editBook(bookDetails._id)">Edit Book</button>
-            <button type="button" class="btn btn-default" ng-click="editBook(bookDetails._id)">Borrow this Book</button>
+            <button type="button" class="btn btn-primary" ng-click="openModal(null, bookDetails)">Borrow this Book</button>
             <button type="button" class="btn btn-danger" ng-click="removeBook(bookDetails._id)">Remove Book</button>
         </div>
     </div>
 </div>
 
-<div ng-if="alerts.length">
-    <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+<div ng-if="empty">
+    <div class="row">
+        <div class="col-md-12 bounceIn animated text-center">
+            <h5>There's not a book with that ID :(</h5>
+        </div>
+    </div>
 </div>
