@@ -6,15 +6,15 @@ var _CategoryService = function ($http, $q, AppConfig, UtilService, _) {
         categories: UtilService.ensureUrl([
             AppConfig.api_url,
             AppConfig.paths.categories
-        ]),
+        ], true),
         category: UtilService.ensureUrl([
             AppConfig.api_url,
             AppConfig.paths.category
-        ]),
+        ], true),
         categoryAndBooks: UtilService.ensureUrl([
             AppConfig.api_url,
             AppConfig.paths.book_and_category
-        ])
+        ], true)
     };
 
     return {

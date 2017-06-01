@@ -6,11 +6,11 @@ var _BookService = function ($http, $q, AppConfig, UtilService, _, $cacheFactory
             books: UtilService.ensureUrl([
                 AppConfig.api_url,
                 AppConfig.paths.books
-            ]),
+            ], true),
             book: UtilService.ensureUrl([
                 AppConfig.api_url,
                 AppConfig.paths.book
-            ])
+            ], true)
         },
         $httpDefaultCache = $cacheFactory.get('$http');
 

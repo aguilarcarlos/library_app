@@ -3,7 +3,7 @@
 var _ConfigurationService = function ($http, $q, AppConfig, UtilService) {
     return {
         getConfig: function () {
-            return $http.get(UtilService.ensureUrl(AppConfig.base_url), {cache: true})
+            return $http.get(UtilService.ensureUrl(AppConfig.base_url, true), {cache: true})
                 .then(function (response) {
                     if (!response.data.data || !response.data.data.length) {
                         return response.data;

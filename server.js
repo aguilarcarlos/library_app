@@ -42,4 +42,4 @@ app.get('*', routes.index);
  */
 
 app.listen(8080);
-console.log("Listeing on http://localhost:8080");
+console.log("Listeing on https://localhost:8080");
