@@ -3,8 +3,8 @@
 var _AppConfig = function () {
     var _default = {
         api_key: '48rXl9ZG7dm0EAWez4Ls3LyFYVA0g8a4',
-        api_url: 'http://api.demo.aguilarcarlos.com/content',
-        base_url: 'http://api.demo.aguilarcarlos.com',
+        api_url: 'https://api.demo.aguilarcarlos.com/content',
+        base_url: 'https://api.demo.aguilarcarlos.com',
         paths: {
             book_and_category: 'category/book',
             book: 'books/{book_id}',
